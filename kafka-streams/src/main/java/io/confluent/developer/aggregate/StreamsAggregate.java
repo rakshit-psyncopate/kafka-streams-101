@@ -30,8 +30,7 @@ public class StreamsAggregate {
         final String outputTopic = streamsProps.getProperty("aggregate.output.topic");
         final Map<String, Object> configMap = StreamsUtils.propertiesToMap(streamsProps);
 
-        final SpecificAvroSerde<ElectronicOrder> electronicSerde =
-                StreamsUtils.getSpecificAvroSerde(configMap);
+        final SpecificAvroSerde<ElectronicOrder> electronicSerde = StreamsUtils.getSpecificAvroSerde(configMap);
 
         final KStream<String, ElectronicOrder> electronicStream =
                 builder.stream(inputTopic, Consumed.with(Serdes.String(), electronicSerde))
